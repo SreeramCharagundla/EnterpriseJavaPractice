@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        form label {
+            display: block;
+            margin: 0.3rem 0;
+        }
+
+        input, select, button {
+            padding: 0.3rem 0.5rem;
+            margin-top: 0.2rem;
+        }
+
+        #message {
+            margin-top: 0.5rem;
+            font-weight: bold;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 0.3rem 0.5rem;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        .status-badge {
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .status-NEW {
+            background-color: #fff3cd;
+        }
+
+        .status-PROCESSED {
+            background-color: #d4edda;
+        }
+
+        .status-CANCELLED {
+            background-color: #f8d7da;
+        }
+
+        .status-ERROR_JMS {
+            background-color: #f5c6cb;
+        }
+
+        .actions button {
+            margin-right: 0.3rem;
+            font-size: 0.8rem;
+        }
+
+        .editing-row {
+            background-color: #e2e3ff;
+        }
+    </style>
+</head>
+<body>
+<h1>Order Management</h1>
+
+<section>
+    <h2 id="formTitle">Place New Order</h2>
+    <form id="orderForm">
+        <input type="hidden" id="orderId">
+
+        <label>
+            Customer Name:
+            <input type="text" id="customerName" required>
+        </label>
+
+        <label>
+            Product Name:
+            <input type="text" id="productName" required>
+        </label>
+
+        <label>
+            Quantity:
+            <input type="number" id="quantity" min="1" required>
+        </label>
+
+        <label>
+            Status (for update; NEW is default for create):
+            <select id="status">
+                <option value="">(leave empty for default)</option>
+                <option value="NEW">NEW</option>
+                <option value="PROCESSED">PROCESSED</option>
+                <option value="CANCELLED">CANCELLED</option>
+                <option value="ERROR_JMS">ERROR_JMS</option>
+            </select>
+        </label>
+
+        <br><br>
+        <button type="submit" id="submitBtn">Place Order</button>
+        <button type="button" id="cancelEditBtn" style="display:none;">Cancel Edit</button>
+    </form>
+    <p id="message"></p>
+</section>
+
+<hr>
+
+<section>
+    <h2>Existing Orders</h2>
+    <button id="refreshBtn">Refresh Orders</button>
+    <table id="ordersTable">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th>Processed At</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- rows will be added via JS -->
+        </tbody>
+    </table>
+</section>
+
+<script src="js/app.js"></script>
+</body>
+</html>

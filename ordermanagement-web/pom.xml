@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ordermanagement</groupId>
+        <artifactId>OrderManagement</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ordermanagement-web</artifactId>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <!-- Jakarta EE APIs -->
+        <dependency>
+        <groupId>jakarta.platform</groupId>
+        <artifactId>jakarta.jakartaee-api</artifactId>
+        <version>${jakarta.ee.version}</version>
+        <scope>provided</scope>
+    </dependency>
+
+    <!-- EJB module dependency so we can call OrderServiceBean and use OrderEntity -->
+    <dependency>
+        <groupId>com.ordermanagement</groupId>
+        <artifactId>ordermanagement-ejb</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <type>ejb</type>
+    </dependency>
+    </dependencies>
+
+</project>
